@@ -8,10 +8,12 @@ RUN apt-get update && apt-get install -y \
     poppler-utils \
     unzip \
     nginx \
+    zlib1g-dev \
+    libpng-dev \
     supervisor \
 && rm -rf /var/lib/apt/lists/*
 
-RUN docker-php-ext-install -j4 mysqli && docker-php-ext-enable mysqli \
+RUN docker-php-ext-install -j4 mysqli gd exif \
     && cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini 
 
 RUN cd /tmp \
