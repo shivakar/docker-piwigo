@@ -18,11 +18,13 @@ RUN docker-php-ext-install -j4 mysqli gd exif \
 
 RUN cd /tmp \
     && curl -sLo piwigo.zip https://piwigo.org/download/dlcounter.php?code=2.10.2 \
-    && unzip piwigo.zip \
-    && mv piwigo/* /var/www/html/
+    && unzip piwigo.zip
 
 COPY nginx.conf /etc/nginx/sites-enabled/default
-COPY supervisord.conf /etc/supervisor/conf.d
+COPY supervisord.conf /etc/supervisor/conf.d/
+COPY entrypoint.sh /entrypoint.sh
+
+VOLUME /var/www/html
 
 EXPOSE 80
-ENTRYPOINT ["/usr/bin/supervisord"]
+ENTRYPOINT ["/entrypoint.sh"]
