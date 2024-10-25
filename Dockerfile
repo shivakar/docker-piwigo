@@ -17,7 +17,7 @@ RUN docker-php-ext-install -j4 mysqli gd exif \
     && cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini 
 
 RUN cd /tmp \
-    && curl -sLo piwigo.zip https://piwigo.org/download/dlcounter.php?code=2.10.2 \
+    && curl -sLo piwigo.zip https://piwigo.org/download/dlcounter.php?code=13.6.0 \
     && unzip piwigo.zip \
     && mv piwigo/* /var/www/html/
 
